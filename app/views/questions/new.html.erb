@@ -1,0 +1,22 @@
+<h1>Post a Question</h1>
+
+<%= form_for @question do |f| %>
+  <% if @question.errors.any? %>
+    <p> There were errors with your submission:</p>
+    <ul>
+      <% @question.errors.full_messages.each do |msg|%>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <div>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+  <%= f.submit %>
+<%end%>

@@ -1,0 +1,35 @@
+<a href="/questions">See All Questions</a>
+
+<h2>Answer this question!</h2>
+
+<%= link_to 'Edit', edit_question_path(@question) %>
+<%= link_to 'Destroy', question_path(@question),
+                    method: :delete, data: { confirm: 'Are you sure?' } %>
+
+
+<p>Title: <%= @question.title %></p>
+<p>Description: <%= @question.description %></p>
+<br/>
+
+<%= form_for [@question, @answer] do |f| %>
+  <% if @answer.errors.any? %>
+    <p> There were errors with your submission:</p>
+    <ul>
+      <% @answer.errors.full_messages.each do |msg|%>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <div>
+    <%= f.label :answer %>
+    <%= f.text_area :description %>
+  </div>
+  <%= f.submit %>
+<%end%>
+
+<ul>
+<% @question.answers.each do |answer| %>
+  <li><%= answer.description %></li>
+  <% end %>
+</ul>
